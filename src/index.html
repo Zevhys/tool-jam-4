@@ -9,14 +9,43 @@
 
 <body>
 
-  <div class="category">
-    <div class="kanban-item">
-      <p> You can drag one element </p>
+  <div class="main-container">
+    
+    <div class="category-board">
+      <div class="kanban-item-container">
+        <div class="kanban-item">
+          <span 
+            class="textbox"
+            role="textbox"
+            placeholder="Type here..."
+            contenteditable>
+          </span>
+          <div class="controls">
+            <details>
+              <summary>
+                <i class="fa-solid fa-ellipsis"></i>
+              </summary>
+              <div>
+                <button class="button-control button-delete">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </details>
+          </div>
+        </div>
+        <div class="flex-space"></div>
+      </div>
     </div>
+
+    <div class="category-board">
+      <div class="kanban-item-container">
+        
+      </div>
+    </div>
+
   </div>
 
   <button id="create-item">test</button>
-
 </body>
 
 </html>
