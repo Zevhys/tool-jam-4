@@ -20,9 +20,8 @@ interact(".kanban-item").draggable({
     },
   },
   modifiers: [
-    interact.modifiers.restrict({
+    interact.modifiers.restrictRect({
       restriction: "parent",
-      endOnly: true,
     }),
   ],
 });
