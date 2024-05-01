@@ -1,0 +1,28 @@
+:root {
+  --green: #79eb34;
+  
+  --red: #ed3d18;
+
+  --yellow: #ffcb0c;
+  --yellow-l: #ffcb0c76;
+
+  --lightblue: #15f4b8;
+  --lightblue-l: #15f4b876;
+  
+  --blue: #4e7de6;
+  --blue-l: #4e7de676;
+}
+
+body {
+  --background: #28272d;
+  --background-100: #2e2d32;
+  --text: #f9f9f9;
+
+  --border: #f9f9f965;
+
+  --accent: var(--yellow);
+  --accent-light: var(--yellow-l);
+
+  color: var(--text);
+  background: var(--background);
+}
