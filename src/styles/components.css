@@ -1,0 +1,48 @@
+.main-container {
+  display: flex;
+/*  border: 1px solid var(--border);*/
+  width: 90vw;
+  height: 80vh;
+  margin: auto;
+  margin-top: 2em;
+}
+
+.category-board {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  height: 100%;
+  width: 270px;
+  padding: 0 1em;
+  padding-top: 1em;
+  margin: 1em;
+}
+
+.kanban-item-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.kanban-item {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+/*  width: 100%;*/
+  min-height: 8em;
+/*  margin: 0 1em;*/
+  background-color: var(--background-100);
+  color: var(--text);
+  border: 1px solid var(--accent-light);
+  border-top: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 1em;
+  padding-bottom: .7em;
+  touch-action: none;
+  user-select: none;
+  transform: translate(0px, 0px);
+}
+
+.kanban-item > :not(.controls) {
+  flex-grow: 1;
+}
