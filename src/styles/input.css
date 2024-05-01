@@ -1,0 +1,17 @@
+textarea, button {
+  background: none;
+  border: none;
+  outline: none;
+  resize: none;
+  border-radius: 4px;
+}
+
+button.button-control {
+  background: var(--text);
+  color: var(--background-100);
+}
+
+button.button-delete {
+  background: none;
+  color: var(--red);
+}
