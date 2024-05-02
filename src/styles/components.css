@@ -1,6 +1,6 @@
 .main-container {
   display: flex;
-/*  border: 1px solid var(--border);*/
+  /*  border: 1px solid var(--border);*/
   width: 90vw;
   height: 80vh;
   margin: auto;
@@ -28,16 +28,17 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 1;
-/*  width: 100%;*/
+  /*  width: 100%;*/
   min-height: 8em;
-/*  margin: 0 1em;*/
+  /*  margin: 0 1em;*/
+  margin-bottom: 1em;
   background-color: var(--background-100);
   color: var(--text);
   border: 1px solid var(--accent-light);
   border-top: 4px solid var(--accent);
   border-radius: 4px;
   padding: 1em;
-  padding-bottom: .7em;
+  padding-bottom: 0.7em;
   touch-action: none;
   user-select: none;
   transform: translate(0px, 0px);
