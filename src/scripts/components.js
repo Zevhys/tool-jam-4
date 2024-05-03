@@ -19,6 +19,6 @@ let kanbanItemTemplate = `
 
 const d = document;
 
-d.querySelector(".create-item").addEventListener("click", (e) => {
+d.querySelector(".create-item-note").addEventListener("click", (e) => {
   e.target.parentElement.querySelector(".kanban-item-container").innerHTML += kanbanItemTemplate;
 });

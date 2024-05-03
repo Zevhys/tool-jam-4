@@ -15,3 +15,13 @@ button.button-delete {
   background: none;
   color: var(--red);
 }
+
+button.create-item {
+  background: var(--blue-l);
+  margin: .2em;
+  padding: .1em .5em;
+}
+
+button.create-item > .fa-plus {
+  font-size: .7em;
+}
