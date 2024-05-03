@@ -3,5 +3,7 @@ import "./styles/main.css";
 import "./styles/input.css";
 import "./styles/components.css";
 import "./scripts/components.js";
+import "./scripts/api/api.js";
 import "./scripts/api/issues.js";
 import "./scripts/dnd.js";
+import "./scripts/theme.js";
