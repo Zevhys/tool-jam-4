@@ -1,4 +1,5 @@
-textarea, button {
+textarea,
+button {
   background: none;
   border: none;
   outline: none;
@@ -18,10 +19,11 @@ button.button-delete {
 
 button.create-item {
   background: var(--blue-l);
-  margin: .2em;
-  padding: .1em .5em;
+  color: var(--text);
+  margin: 0.2em;
+  padding: 0.1em 0.5em;
 }
 
 button.create-item > .fa-plus {
-  font-size: .7em;
+  font-size: 0.7em;
 }
