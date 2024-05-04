@@ -23,13 +23,13 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: "asset/resource",
         generator: {
-            filename: "./fonts/[name][ext]",
+          filename: "./fonts/[name][ext]",
         },
       },
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.s?css$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
-    ]
+    ],
   },
-}
+};

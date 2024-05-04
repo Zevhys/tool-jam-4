@@ -1,42 +1,38 @@
 let kanbanItemTemplate = `
-    <div class="kanban-item">
-      <span class="textbox" role="textbox" placeholder="Type here..." contenteditable>
-      </span>
-      <div class="controls">
-        <details>
-          <summary>
-            <i class="fa-solid fa-ellipsis"></i>
-          </summary>
-          <div>
-            <button class="button-control button-delete">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        </details>
+      <div class="container">
+        <span class="textbox" role="textbox" placeholder="Type here..." contenteditable>
+        </span>
       </div>
-    </div>
+
+      <div class="controls">
+        <button class="create-item create-task">
+        <i class="fa-solid fa-list-check"></i>
+        </button>
+      </div>
 `;
 
 const d = document;
 
 d.querySelector(".create-item-note").addEventListener("click", (e) => {
-  e.target.parentElement.querySelector(".kanban-item-container").innerHTML += kanbanItemTemplate;
+  let kanbanItem = d.createElement("label");
+  kanbanItem.classList.add("kanban-item");
+  kanbanItem.innerHTML = kanbanItemTemplate;
+
+  e.target.parentElement.querySelector(".kanban-item-container").appendChild(kanbanItem);
+
+  // e.target.parentElement.querySelector(".kanban-item-container").innerHTML += kanbanItemTemplate;
+
+  d.querySelector(".create-task").addEventListener("click", (_e) => {
+    console.log(_e.target.parentElement.parentElement.previousElementSibling);
+    let taskItem = d.createElement("label");
+    taskItem.classList.add("checkbox");
+    taskItem.innerHTML = `
+      <input type="checkbox">
+      <i class="fa-solid fa-square-check"></i>
+      <i class="fa-regular fa-square"></i>
+      <input type="text" placeholder="Task item">
+    `;
+
+    _e.target.parentElement.parentElement.previousElementSibling.appendChild(taskItem);
+  });
 });
-
-// TODO
-//   <form id="form">
-//   </form>
-//   <button id="btn">tambah</button>
-//   <input type="text" name="" id="inp"></input>
-
-// let form = document.querySelector("#form");
-
-// document.querySelector("#btn").addEventListener("click", () => {
-//   let input = document.querySelector("#inp").value;
-//   const template = `
-//         <input type="checkbox" name="cb" id="${input.replace(" ", "-")}">
-//         <label for="${input.replace(" ", "-")}">${input}</label>
-//       `;
-//   // console.log(input)
-//   form.innerHTML += template;
-// });
