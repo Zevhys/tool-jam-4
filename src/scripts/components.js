@@ -20,13 +20,10 @@ d.querySelector(".create-item-note").addEventListener("click", (e) => {
 
   e.target.parentElement.querySelector(".kanban-item-container").appendChild(kanbanItem);
 
-  // e.target.parentElement.querySelector(".kanban-item-container").innerHTML += kanbanItemTemplate;
-
-  // d.querySelector("button.create-task").addEventListener("click", (_e) => {
-  kanbanItem.querySelector("button.create-task").addEventListener("click", (_e) => {
+  kanbanItem.querySelector("button.create-task").addEventListener("click", () => {
     let taskItem = d.createElement("label");
     taskItem.classList.add("checkbox");
-    taskItem.innerHTML = `
+    taskItem.innerHTML += `
       <input type="checkbox">
       <i class="fa-solid fa-square-check"></i>
       <i class="fa-regular fa-square"></i>
@@ -36,9 +33,10 @@ d.querySelector(".create-item-note").addEventListener("click", (e) => {
       </button>
     `;
 
-    taskItem.querySelector(".task-delete").addEventListener("", () => {});
+    taskItem.querySelector(".task-delete").addEventListener("click", () => {
+      taskItem.remove();
+    });
 
     kanbanItem.querySelector(".container").appendChild(taskItem);
-    // _e.target.parentElement.parentElement.previousElementSibling.appendChild(taskItem);
   });
 });
