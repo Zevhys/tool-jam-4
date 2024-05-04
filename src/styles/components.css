@@ -47,3 +47,7 @@
 .kanban-item > :not(.controls) {
   flex-grow: 1;
 }
+
+.kanban-item label.checkbox {
+  display: inline-block;
+}
