@@ -42,12 +42,12 @@
   touch-action: none;
   user-select: none;
   transform: translate(0px, 0px);
-}
 
-.kanban-item > :not(.controls) {
-  flex-grow: 1;
-}
+  & > :not(.controls) {
+    flex-grow: 1;
+  }
 
-.kanban-item label.checkbox {
-  display: inline-block;
+  & label.checkbox {
+    display: inline-block;
+  }
 }
