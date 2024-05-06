@@ -1,29 +1,70 @@
 const d = document;
 
+// <span class="textbox" role="textbox" placeholder="Type here..." contenteditable></span>;
+
 let kanbanItemTemplate = `
   <div class="container">
-    <span class="textbox" role="textbox" placeholder="Type here..." contenteditable>
-    </span>
+    <h3><input class="heading" type="text" value="Title"></h3>
+    <textarea class="textbox note"></textarea>
+    <hr>
   </div>
 
+  <hr>
+
   <div class="controls">
+    <button class="create-item toggle-heading">
+      <i class="fa-solid fa-heading"></i>
+    </button>
+
+    <button class="create-item toggle-note">
+      <i class="fa-solid fa-file-lines"></i>
+    </button>
+
     <button class="create-item create-task">
-    <i class="fa-solid fa-list-check"></i>
+      <i class="fa-solid fa-list-check"></i>
+    </button>
+
+    <div class="flex-space"></div>
+
+    <button class="create-item delete-item">
+      <i class="fa-solid fa-trash"></i>
     </button>
   </div>
 `;
 
-d.querySelector(".create-item-note").addEventListener("click", (e) => {
-  let kanbanItem = d.createElement("label");
-  kanbanItem.classList.add("kanban-item");
-  kanbanItem.innerHTML = kanbanItemTemplate;
+function initializeBoard(elem) {
+  const createNoteButton = elem.querySelector(".create-item-note");
 
-  e.target.parentElement.querySelector(".kanban-item-container").appendChild(kanbanItem);
+  createNoteButton.addEventListener("click", () => {
+    let kanbanItem = d.createElement("label");
+    kanbanItem.classList.add("kanban-item");
+    kanbanItem.innerHTML = kanbanItemTemplate;
 
-  kanbanItem.querySelector("button.create-task").addEventListener("click", () => {
-    let taskItem = d.createElement("label");
-    taskItem.classList.add("checkbox");
-    taskItem.innerHTML += `
+    const headingInp = kanbanItem.querySelector(".heading");
+    const noteInp = kanbanItem.querySelector(".note");
+
+    elem.querySelector(".kanban-item-container").appendChild(kanbanItem);
+
+    const toggleHeadingButton = kanbanItem.querySelector(".toggle-heading");
+    const toggleNoteButton = kanbanItem.querySelector(".toggle-note");
+    const createTaskButton = kanbanItem.querySelector(".create-task");
+
+    kanbanItem.querySelector(".delete-item").addEventListener("click", () => {
+      kanbanItem.remove();
+    });
+
+    toggleHeadingButton.addEventListener("click", () => {
+      headingInp.classList.toggle("hidden");
+    });
+
+    toggleNoteButton.addEventListener("click", () => {
+      noteInp.classList.toggle("hidden");
+    });
+
+    createTaskButton.addEventListener("click", () => {
+      let taskItem = d.createElement("label");
+      taskItem.classList.add("checkbox");
+      taskItem.innerHTML += `
       <input type="checkbox">
       <i class="fa-solid fa-square-check"></i>
       <i class="fa-regular fa-square"></i>
@@ -33,10 +74,39 @@ d.querySelector(".create-item-note").addEventListener("click", (e) => {
       </button>
     `;
 
-    taskItem.querySelector(".task-delete").addEventListener("click", () => {
-      taskItem.remove();
-    });
+      taskItem.querySelector(".task-delete").addEventListener("click", () => {
+        taskItem.remove();
+      });
 
-    kanbanItem.querySelector(".container").appendChild(taskItem);
+      kanbanItem.querySelector(".container").appendChild(taskItem);
+    });
   });
-});
+}
+
+let columns = {
+  col1: {
+    name: "",
+    element: d.getElementById("col1"),
+    titleEl: d.getElementById("col1-heading"),
+  },
+  col2: {
+    name: "",
+    element: d.getElementById("col2"),
+    titleEl: d.getElementById("col2-heading"),
+  },
+  col3: {
+    name: "",
+    element: d.getElementById("col3"),
+    titleEl: d.getElementById("col3-heading"),
+  },
+  col4: {
+    name: "",
+    element: d.getElementById("col4"),
+    titleEl: d.getElementById("col4-heading"),
+  },
+};
+
+for (const col in columns) {
+  const colObj = columns[col];
+  initializeBoard(colObj.element);
+}
