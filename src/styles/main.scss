@@ -1,9 +1,13 @@
 html {
   color-scheme: dark;
   font-family: "poppins", sans-serif;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .flex-space {
   flex-grow: 1;
+}
+
+.hidden {
+  display: none !important;
 }
