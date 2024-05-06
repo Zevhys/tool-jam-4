@@ -10,6 +10,8 @@ input {
 }
 
 button {
+  cursor: pointer;
+
   &.button-control {
     background: var(--text);
     color: var(--background-100);
@@ -21,13 +23,29 @@ button {
   }
 
   &.create-item {
-    background: var(--blue-l);
+    background: var(--blue);
     color: var(--text);
-    margin: 0.2em;
+    // border-bottom: 3px solid var(--blue-l);
+    margin: 0.25em;
     padding: 0.1em 0.5em;
+
+    &:hover {
+      border-bottom: 0;
+      outline: 2px solid var(--blue-l);
+      // transform: translateY(2px);
+    }
 
     & > .fa-plus {
       font-size: 0.7em;
+    }
+  }
+}
+
+.light-mode {
+  & .create-item {
+    background: var(--blue-l);
+    &:hover {
+      outline: 2px solid var(--blue);
     }
   }
 }
@@ -44,4 +62,9 @@ label.checkbox > input {
   &:not(:checked) ~ .fa-square-check {
     display: none;
   }
+}
+
+.checkbox:not(:hover) > .task-delete {
+  // display: none;
+  opacity: 0;
 }
