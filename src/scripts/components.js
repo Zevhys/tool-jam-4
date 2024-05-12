@@ -11,6 +11,16 @@ let kanbanItemTemplate = `
       <button class="item-config more-config">
         <i class="fa-solid fa-ellipsis"></i>
       </button>
+
+      <div class="flex-space"></div>
+
+      <button class="item-config move-up hidden">
+        <i class="fa-solid fa-caret-up"></i>
+      </button>
+
+      <button class="item-config move-down hidden">
+        <i class="fa-solid fa-caret-down"></i>
+      </button>
     </div>
 
     <div class="controls hidden">
@@ -66,12 +76,24 @@ for (const col in columns) {
 function initializeBoard(elem) {
   const createNoteButton = elem.find(".create-item-note");
 
-  createNoteButton.click(() => {
-    elem.find(".kanban-item-container").append(createItemGeneral({}));
+  createNoteButton.on("click", () => {
+    addKanbanItem(createItemGeneral({}, elem), elem);
   });
 }
 
-function createItemGeneral(data) {
+function addKanbanItem(item, board) {
+  const kanbanContainer = board.find(".kanban-item-container");
+
+  kanbanContainer.append(item);
+
+  kanbanContainer.on("DOMNodeInserted DOMNodeRemoved", () => {
+    kanbanContainer.children(".kanban-item").each((i, e) => {
+      updateItemPositions($(e));
+    })
+  });
+}
+
+function createItemGeneral(data, board) {
   let kanbanItem = $(`
     <div class='kanban-item'>
       ${kanbanItemTemplate}
@@ -125,5 +147,21 @@ function createItemGeneral(data) {
     moreControlsContainer.toggleClass("hidden");
   });
 
+  const btnMoveUp = kanbanItem.find(".move-up");
+  const btnMoveDown = kanbanItem.find(".move-down");
+
+  btnMoveUp.on("click", () => {
+    kanbanItem.insertBefore(kanbanItem.prev()); 
+  });
+
+  btnMoveDown.on("click", () => {
+    kanbanItem.insertAfter(kanbanItem.next()); 
+  });
+
   return kanbanItem;
+}
+
+function updateItemPositions(item) {
+  item.find(".move-up").toggleClass("hidden", item.prev().length == 0);
+  item.find(".move-down").toggleClass("hidden", item.next().length == 0);
 }
