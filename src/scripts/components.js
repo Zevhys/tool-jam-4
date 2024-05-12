@@ -35,67 +35,6 @@ let kanbanItemTemplate = `
   </div>
 `;
 
-function initializeBoard(elem) {
-  const createNoteButton = elem.find(".create-item-note");
-
-  createNoteButton.on("click", () => {
-    let kanbanItem = $(`
-      <div class='kanban-item'>
-        ${kanbanItemTemplate}
-      </div>
-    `);
-
-    const headingComp = kanbanItem.find("h3");
-    const headingInp = kanbanItem.find(".heading");
-    const noteInp = kanbanItem.find(".note");
-
-    elem.find(".kanban-item-container").append(kanbanItem);
-
-    const toggleHeadingButton = kanbanItem.find(".toggle-heading");
-    const toggleNoteButton = kanbanItem.find(".toggle-note");
-    const createTaskButton = kanbanItem.find(".create-task");
-
-    kanbanItem.find(".delete-item").on("click", () => {
-      kanbanItem.remove();
-    });
-
-    toggleHeadingButton.on("click", () => {
-      headingComp.toggleClass("hidden");
-    });
-
-    toggleNoteButton.on("click", () => {
-      noteInp.toggleClass("hidden");
-    });
-
-    createTaskButton.on("click", () => {
-      let taskItem = $(`
-        <label class='checkbox'>
-          <input type="checkbox">
-          <i class="fa-solid fa-square-check"></i>
-          <i class="fa-regular fa-square"></i>
-          <input type="text" placeholder="Task item">
-          <button class="task-delete">
-            <i class="fa-solid fa-trash"></i>
-          </button>
-        </label>
-      `);
-
-      taskItem.find(".task-delete").on("click", () => {
-        taskItem.remove();
-      });
-
-      kanbanItem.find(".container").append(taskItem);
-    });
-
-    const moreControlsContainer = kanbanItem.find("div.controls");
-    const toggleMoreControls = kanbanItem.find("button.item-config.more-config");
-
-    toggleMoreControls.on("click", () => {
-      moreControlsContainer.toggleClass("hidden");
-    });
-  });
-}
-
 let columns = {
   col1: {
     name: "",
@@ -122,4 +61,69 @@ let columns = {
 for (const col in columns) {
   const colObj = columns[col];
   initializeBoard(colObj.element);
+}
+
+function initializeBoard(elem) {
+  const createNoteButton = elem.find(".create-item-note");
+
+  createNoteButton.click(() => {
+    elem.find(".kanban-item-container").append(createItemGeneral({}));
+  });
+}
+
+function createItemGeneral(data) {
+  let kanbanItem = $(`
+    <div class='kanban-item'>
+      ${kanbanItemTemplate}
+    </div>
+  `);
+
+  const headingComp = kanbanItem.find("h3");
+  const headingInp = kanbanItem.find(".heading");
+  const noteInp = kanbanItem.find(".note");
+
+  const toggleHeadingButton = kanbanItem.find(".toggle-heading");
+  const toggleNoteButton = kanbanItem.find(".toggle-note");
+  const createTaskButton = kanbanItem.find(".create-task");
+
+  kanbanItem.find(".delete-item").on("click", () => {
+    kanbanItem.remove();
+  });
+
+  toggleHeadingButton.on("click", () => {
+    headingComp.toggleClass("hidden");
+  });
+
+  toggleNoteButton.on("click", () => {
+    noteInp.toggleClass("hidden");
+  });
+
+  createTaskButton.on("click", () => {
+    let taskItem = $(`
+      <label class='checkbox'>
+        <input type="checkbox">
+        <i class="fa-solid fa-square-check"></i>
+        <i class="fa-regular fa-square"></i>
+        <input type="text" placeholder="Task item">
+        <button class="task-delete">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </label>
+    `);
+
+    taskItem.find(".task-delete").on("click", () => {
+      taskItem.remove();
+    });
+
+    kanbanItem.find(".container").append(taskItem);
+  });
+
+  const moreControlsContainer = kanbanItem.find("div.controls");
+  const toggleMoreControls = kanbanItem.find("button.item-config.more-config");
+
+  toggleMoreControls.on("click", () => {
+    moreControlsContainer.toggleClass("hidden");
+  });
+
+  return kanbanItem;
 }
