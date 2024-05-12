@@ -27,3 +27,45 @@ html {
   padding: .2em;
   border-radius: 4px;
 }
+
+.toolbar {
+  background: var(--text);
+  // background: gray;
+  color: var(--background);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  padding: 0 1em;
+
+  & > h1 {
+    font-size: 1.6em;
+    font-weight: lighter;
+    margin: .3em 0;
+    margin-right: .5em;
+  }
+
+  & > button {
+    color: var(--background);
+  }
+
+  & > #saving-indicator {
+    font-size: .9em;
+    font-weight: lighter;
+    margin-left: .5em;
+
+    &.loading-fade-out {
+      animation: load-fade-out 1.5s 1 forwards ease;
+    }
+  }
+}
+
+@keyframes load-fade-out {
+  0% {
+    opacity: 100%;
+  }
+  80% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}

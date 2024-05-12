@@ -85,3 +85,12 @@ label.checkbox > input {
 .checkbox:not(:hover) > .task-delete {
   opacity: 0;
 }
+
+.toolbar > button {
+  font-size: 1.3em;
+  transition: transform ease .1s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}

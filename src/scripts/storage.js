@@ -5,6 +5,8 @@ import {
   createItemGeneral,
 } from "./components";
 
+const saveIndicator = $("#saving-indicator");
+
 export let templateItemGeneral = {
   title: "Title",
   url: "",
@@ -65,6 +67,10 @@ function getBoardData(board) {
 }
 
 function saveBoards() {
+  saveIndicator.text("saving...");
+  saveIndicator.removeClass("loading-fade-out");
+  saveIndicator.height();
+
   let data = [];
   for (const col in columns) {
     const colObj = columns[col];
@@ -72,6 +78,7 @@ function saveBoards() {
   }
 
   localStorage.setItem("boardData", JSON.stringify(data));
+  saveIndicator.addClass("loading-fade-out");
 }
 
 $("#button-save").on("click", () => {

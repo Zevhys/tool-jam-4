@@ -4,12 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>かんたん | Way too oversimplified kanban board</title>
 </head>
 
 <body>
-  <button class="item-config" id="toggle-theme">Toggle Dark/Light</button>
-  <button class="item-config" id="button-save">Save</button>
+  <div class="toolbar">
+    <h1>
+      かんたん
+    </h1>
+    <button class="toolbar-btn" id="button-save">
+      <i class="fa-solid fa-floppy-disk"></i>
+    </button>
+    <h2 id="saving-indicator">
+      
+    </h2>
+
+    <div class="flex-space"></div>
+
+    <button class="toolbar-btn" id="toggle-theme">
+      <i class="fa-solid fa-sun"></i> /
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </div>
 
   <div class="move-item-popup hidden" id="move-item-menu">
     <button class="item-config" id="move-to-col1">Move to col 1</button>
