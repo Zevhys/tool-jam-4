@@ -86,15 +86,17 @@ export function addKanbanItem(item, board) {
   const kanbanContainer = board.find(".kanban-item-container");
 
   kanbanContainer.append(item);
-
-  kanbanContainer.on("DOMNodeInserted DOMNodeRemoved", () => {
-    kanbanContainer.children(".kanban-item").each((i, e) => {
-      updateItemPositions($(e));
-    })
-  });
+  updateBoardItemsPositions(board);
+  // ["DOMNodeInserted", "DOMNodeRemoved"].forEach((str) => {
+  //   kanbanContainer.on(str, () => {
+  //     board.find(".kanban-item-container").children(".kanban-item").each((i, e) => {
+  //       updateItemPositions($(e));
+  //     })
+  //   });
+  // });
 }
 
-export function createItemGeneral(data) {
+export function createItemGeneral(data, board) {
   let kanbanItem = $(`
     <div class='kanban-item'>
       ${kanbanItemTemplate}
@@ -111,6 +113,7 @@ export function createItemGeneral(data) {
 
   kanbanItem.find(".delete-item").on("click", () => {
     kanbanItem.remove();
+    updateBoardItemsPositions(board);
   });
 
   toggleHeadingButton.on("click", () => {
@@ -136,11 +139,13 @@ export function createItemGeneral(data) {
   const btnMoveDown = kanbanItem.find(".move-down");
 
   btnMoveUp.on("click", () => {
-    kanbanItem.insertBefore(kanbanItem.prev()); 
+    kanbanItem.insertBefore(kanbanItem.prev());
+    updateBoardItemsPositions(board);
   });
 
   btnMoveDown.on("click", () => {
-    kanbanItem.insertAfter(kanbanItem.next()); 
+    kanbanItem.insertAfter(kanbanItem.next());
+    updateBoardItemsPositions(board);
   });
 
   return kanbanItem;
@@ -169,4 +174,10 @@ function createCheckbox(name = "", checked = false) {
 function updateItemPositions(item) {
   item.find(".move-up").toggleClass("hidden", item.prev().length == 0);
   item.find(".move-down").toggleClass("hidden", item.next().length == 0);
+}
+
+function updateBoardItemsPositions(board) {
+  board.find(".kanban-item-container").children(".kanban-item").each((i, e) => {
+    updateItemPositions($(e));
+  });
 }
