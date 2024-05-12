@@ -57,22 +57,22 @@ let kanbanItemTemplate = `
 
 export let columns = {
   col1: {
-    name: "",
+    nameDefault: "💡 Planned",
     element: $("#col1"),
     titleEl: $("#col1-heading"),
   },
   col2: {
-    name: "",
+    nameDefault: "🔧 In Progress",
     element: $("#col2"),
     titleEl: $("#col2-heading"),
   },
   col3: {
-    name: "",
+    nameDefault: "🧪 Testing",
     element: $("#col3"),
     titleEl: $("#col3-heading"),
   },
   col4: {
-    name: "",
+    nameDefault: "📌 Finished",
     element: $("#col4"),
     titleEl: $("#col4-heading"),
   },
@@ -87,6 +87,7 @@ for (const col in columns) {
   moveMenu.text(`Move to ${colObj.titleEl.val()}`);
 
   colObj.titleEl.on("input", () => {
+    colObj.titleEl.attr("data-title-val", colObj.titleEl.val());
     moveMenu.text(`Move to ${colObj.titleEl.val()}`);
   });
 
@@ -98,6 +99,13 @@ for (const col in columns) {
 
 function initializeBoard(elem) {
   const createNoteButton = elem.find(".create-item-note");
+  const headingInp = elem.find("input[id*='heading']");
+
+  headingInp.attr("data-title-val", headingInp.val());
+
+  headingInp.on("input", () => {
+    headingInp.attr("data-title-val", headingInp.val());
+  });
 
   createNoteButton.on("click", () => {
     addKanbanItem(createItemGeneral(templateItemGeneral, elem), elem);

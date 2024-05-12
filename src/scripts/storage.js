@@ -32,7 +32,7 @@ export let templateCheckbox = {
 
 function getBoardData(board) {
   let boardData = {
-    title: board.find("h2 > input[type='text']").val() || "",
+    title: board.find("input[id*='heading']").attr("data-title-val"),
     boardItems: [],
   }
 
@@ -104,10 +104,17 @@ window.addEventListener("load", () => {
       const colEl = colObj.element;
 
       colObj.titleEl.val(e.title);
+      colObj.titleEl.attr("data-title-val", e.title);
 
       e.boardItems.forEach((itm) => {
         addKanbanItem(createItemGeneral(itm, colEl), colEl);
       });
     });
-  }
+  } else {
+    for (const col in columns) {
+      const colObj = columns[col];
+      colObj.titleEl.val(colObj.nameDefault);
+      colObj.attr("data-title-val", colObj.val(colObj.nameDefault));
+    }
+  };
 });
