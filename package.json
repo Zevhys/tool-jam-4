@@ -30,7 +30,7 @@
     "@interactjs/dev-tools": "^1.10.27",
     "@interactjs/interact": "^1.10.27",
     "@interactjs/modifiers": "^1.10.27",
-    "interactjs": "^1.10.27",
+    "jquery": "^3.7.1",
     "normalize.css": "^8.0.1"
   }
 }
