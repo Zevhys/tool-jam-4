@@ -50,7 +50,7 @@ function getBoardData(board) {
       title: el.find("h3 > input.heading").val() || "",
       url: el.find("input.url-input").val() || "",
       description: el.find("textarea.textbox.note").val() || "",
-      descHeight: el.find("textarea.textbox.note").attr("style") || "",
+      descStyle: el.find("textarea.textbox.note").attr("style") || "",
       checkboxes: checkboxesData,
       visibility: {
         heading: !el.find(".container > h3").hasClass("hidden"),
@@ -102,6 +102,5 @@ window.addEventListener("load", () => {
         addKanbanItem(createItemGeneral(itm, colEl), colEl);
       });
     });
-    // console.log(JSON.parse(localStorage.getItem("boardData")))
   }
 });

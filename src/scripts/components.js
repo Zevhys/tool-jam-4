@@ -119,8 +119,15 @@ export function createItemGeneral(data, board) {
   `);
 
   const headingComp = kanbanItem.find("h3");
+  headingComp.toggleClass("hidden", !data.visibility.heading);
+
   const headingInp = kanbanItem.find(".heading");
+  headingInp.val(data.title);
+
   const noteInp = kanbanItem.find(".note");
+  noteInp.toggleClass("hidden", !data.visibility.desc);
+  noteInp.val(data.description);
+  noteInp.attr("style", data.descStyle);
 
   const toggleHeadingButton = kanbanItem.find(".toggle-heading");
   const toggleNoteButton = kanbanItem.find(".toggle-note");
@@ -141,6 +148,10 @@ export function createItemGeneral(data, board) {
 
   createTaskButton.on("click", () => {
     kanbanItem.find(".container").append(createCheckbox());
+  });
+
+  data.checkboxes.forEach((e) => {
+    kanbanItem.find(".container").append(createCheckbox(e.name, e.checked));
   });
 
   const moreControlsContainer = kanbanItem.find("div.controls");
