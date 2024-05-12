@@ -6,37 +6,39 @@ let kanbanItemTemplate = `
     <textarea class="textbox note"></textarea>
   </div>
 
-  <details class="kanban-item-config">
-    <summary>
-      <i class="fa-solid fa-ellipsis"></i>
-    </summary>
+  <div class="kanban-item-config">
+    <div class="controls-general">
+      <button class="item-config more-config">
+        <i class="fa-solid fa-ellipsis"></i>
+      </button>
+    </div>
 
-    <div class="controls">
-      <button class="create-item toggle-heading">
+    <div class="controls hidden">
+      <button class="item-config toggle-heading">
         <i class="fa-solid fa-heading"></i>
       </button>
 
-      <button class="create-item toggle-note">
+      <button class="item-config toggle-note">
         <i class="fa-solid fa-file-lines"></i>
       </button>
 
-      <button class="create-item create-task">
+      <button class="item-config create-task">
         <i class="fa-solid fa-list-check"></i>
       </button>
 
       <div class="flex-space"></div>
 
-      <button class="create-item delete-item">
+      <button class="item-config delete-item">
         <i class="fa-solid fa-trash"></i>
       </button>
     </div>
-  </details>
+  </div>
 `;
 
 function initializeBoard(elem) {
   const createNoteButton = elem.find(".create-item-note");
 
-  createNoteButton.bind("click", () => {
+  createNoteButton.on("click", () => {
     let kanbanItem = $(`
       <div class='kanban-item'>
         ${kanbanItemTemplate}
@@ -53,19 +55,19 @@ function initializeBoard(elem) {
     const toggleNoteButton = kanbanItem.find(".toggle-note");
     const createTaskButton = kanbanItem.find(".create-task");
 
-    kanbanItem.find(".delete-item").bind("click", () => {
+    kanbanItem.find(".delete-item").on("click", () => {
       kanbanItem.remove();
     });
 
-    toggleHeadingButton.bind("click", () => {
+    toggleHeadingButton.on("click", () => {
       headingComp.toggleClass("hidden");
     });
 
-    toggleNoteButton.bind("click", () => {
+    toggleNoteButton.on("click", () => {
       noteInp.toggleClass("hidden");
     });
 
-    createTaskButton.bind("click", () => {
+    createTaskButton.on("click", () => {
       let taskItem = $(`
         <label class='checkbox'>
           <input type="checkbox">
@@ -78,11 +80,18 @@ function initializeBoard(elem) {
         </label>
       `);
 
-      taskItem.find(".task-delete").bind("click", () => {
+      taskItem.find(".task-delete").on("click", () => {
         taskItem.remove();
       });
 
       kanbanItem.find(".container").append(taskItem);
+    });
+
+    const moreControlsContainer = kanbanItem.find("div.controls");
+    const toggleMoreControls = kanbanItem.find("button.item-config.more-config");
+
+    toggleMoreControls.on("click", () => {
+      moreControlsContainer.toggleClass("hidden");
     });
   });
 }
