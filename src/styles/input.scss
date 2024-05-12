@@ -42,7 +42,7 @@ button {
     font-size: .9em;
     display: inline-block;
     background: var(--background-100);
-    max-width: 2em;
+    // max-width: 2em;
     text-align: center;
     border-radius: 4px;
     border: 1px solid var(--border);
@@ -51,6 +51,10 @@ button {
 
     &:hover {
       background: var(--border-100);
+    }
+
+    & > .fa-plus {
+      font-size: 0.7em;
     }
   }
 }
