@@ -1,6 +1,5 @@
 const d = document;
-
-// <span class="textbox" role="textbox" placeholder="Type here..." contenteditable></span>;
+import $ from "jquery";
 
 let kanbanItemTemplate = `
   <div class="container">
@@ -36,53 +35,53 @@ let kanbanItemTemplate = `
 `;
 
 function initializeBoard(elem) {
-  const createNoteButton = elem.querySelector(".create-item-note");
+  const createNoteButton = elem.find(".create-item-note");
 
-  createNoteButton.addEventListener("click", () => {
-    let kanbanItem = d.createElement("div");
-    kanbanItem.classList.add("kanban-item");
-    kanbanItem.innerHTML = kanbanItemTemplate;
+  createNoteButton.bind("click", () => {
+    let kanbanItem = $(`<div class='kanban-item'>${kanbanItemTemplate}</div>`);
+    // kanbanItem.addClass("kanban-item");
+    // kanbanItem.innerHTML = kanbanItemTemplate;
 
-    const headingComp = kanbanItem.querySelector("h3");
-    const headingInp = kanbanItem.querySelector(".heading");
-    const noteInp = kanbanItem.querySelector(".note");
+    const headingComp = kanbanItem.find("h3");
+    const headingInp = kanbanItem.find(".heading");
+    const noteInp = kanbanItem.find(".note");
 
-    elem.querySelector(".kanban-item-container").appendChild(kanbanItem);
+    elem.find(".kanban-item-container").append(kanbanItem);
 
-    const toggleHeadingButton = kanbanItem.querySelector(".toggle-heading");
-    const toggleNoteButton = kanbanItem.querySelector(".toggle-note");
-    const createTaskButton = kanbanItem.querySelector(".create-task");
+    const toggleHeadingButton = kanbanItem.find(".toggle-heading");
+    const toggleNoteButton = kanbanItem.find(".toggle-note");
+    const createTaskButton = kanbanItem.find(".create-task");
 
-    kanbanItem.querySelector(".delete-item").addEventListener("click", () => {
+    kanbanItem.find(".delete-item").bind("click", () => {
       kanbanItem.remove();
     });
 
-    toggleHeadingButton.addEventListener("click", () => {
-      headingComp.classList.toggle("hidden");
+    toggleHeadingButton.bind("click", () => {
+      headingComp.toggleClass("hidden");
     });
 
-    toggleNoteButton.addEventListener("click", () => {
-      noteInp.classList.toggle("hidden");
+    toggleNoteButton.bind("click", () => {
+      noteInp.toggleClass("hidden");
     });
 
-    createTaskButton.addEventListener("click", () => {
-      let taskItem = d.createElement("label");
-      taskItem.classList.add("checkbox");
-      taskItem.innerHTML += `
-      <input type="checkbox">
-      <i class="fa-solid fa-square-check"></i>
-      <i class="fa-regular fa-square"></i>
-      <input type="text" placeholder="Task item">
-      <button class="task-delete">
-        <i class="fa-solid fa-trash"></i>
-      </button>
-    `;
+    createTaskButton.bind("click", () => {
+      let taskItem = $(`
+        <label class='checkbox'>
+          <input type="checkbox">
+          <i class="fa-solid fa-square-check"></i>
+          <i class="fa-regular fa-square"></i>
+          <input type="text" placeholder="Task item">
+          <button class="task-delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </label>
+      `);
 
-      taskItem.querySelector(".task-delete").addEventListener("click", () => {
+      taskItem.find(".task-delete").bind("click", () => {
         taskItem.remove();
       });
 
-      kanbanItem.querySelector(".container").appendChild(taskItem);
+      kanbanItem.find(".container").append(taskItem);
     });
   });
 }
@@ -90,23 +89,23 @@ function initializeBoard(elem) {
 let columns = {
   col1: {
     name: "",
-    element: d.getElementById("col1"),
-    titleEl: d.getElementById("col1-heading"),
+    element: $("#col1"),
+    titleEl: $("#col1-heading"),
   },
   col2: {
     name: "",
-    element: d.getElementById("col2"),
-    titleEl: d.getElementById("col2-heading"),
+    element: $("#col2"),
+    titleEl: $("#col2-heading"),
   },
   col3: {
     name: "",
-    element: d.getElementById("col3"),
-    titleEl: d.getElementById("col3-heading"),
+    element: $("#col3"),
+    titleEl: $("#col3-heading"),
   },
   col4: {
     name: "",
-    element: d.getElementById("col4"),
-    titleEl: d.getElementById("col4-heading"),
+    element: $("#col4"),
+    titleEl: $("#col4-heading"),
   },
 };
 
