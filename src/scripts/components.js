@@ -94,7 +94,7 @@ export function addKanbanItem(item, board) {
   });
 }
 
-export function createItemGeneral(data, board) {
+export function createItemGeneral(data) {
   let kanbanItem = $(`
     <div class='kanban-item'>
       ${kanbanItemTemplate}
@@ -122,23 +122,7 @@ export function createItemGeneral(data, board) {
   });
 
   createTaskButton.on("click", () => {
-    let taskItem = $(`
-      <label class='checkbox'>
-        <input type="checkbox">
-        <i class="fa-solid fa-square-check"></i>
-        <i class="fa-regular fa-square"></i>
-        <input type="text" placeholder="Task item">
-        <button class="task-delete">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-      </label>
-    `);
-
-    taskItem.find(".task-delete").on("click", () => {
-      taskItem.remove();
-    });
-
-    kanbanItem.find(".container").append(taskItem);
+    kanbanItem.find(".container").append(createCheckbox());
   });
 
   const moreControlsContainer = kanbanItem.find("div.controls");
@@ -160,6 +144,26 @@ export function createItemGeneral(data, board) {
   });
 
   return kanbanItem;
+}
+
+function createCheckbox(name = "", checked = false) {
+  let taskItem = $(`
+    <label class='checkbox'>
+      <input type="checkbox" ${ checked ? "checked" : "" }>
+      <i class="fa-solid fa-square-check"></i>
+      <i class="fa-regular fa-square"></i>
+      <input type="text" placeholder="Task item" value="${name}">
+      <button class="task-delete">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </label>
+  `);
+
+  taskItem.find(".task-delete").on("click", () => {
+    taskItem.remove();
+  });
+
+  return taskItem;
 }
 
 function updateItemPositions(item) {
