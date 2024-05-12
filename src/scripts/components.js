@@ -1,6 +1,9 @@
 import $ from "jquery";
 import { templateItemGeneral, templateCheckbox } from "./storage";
 
+const moveItemMenu = $("#move-item-menu");
+let moveItemCurrTarget;
+
 let kanbanItemTemplate = `
   <div class="container">
     <h3><input class="heading" type="text" value="Title"></h3>
@@ -14,6 +17,12 @@ let kanbanItemTemplate = `
       </button>
 
       <div class="flex-space"></div>
+
+      <button class="item-config move-item">
+        <i class="fa-solid fa-up-down-left-right"></i>
+      </button>
+
+      <div class="vseparator"></div>
 
       <button class="item-config move-up hidden">
         <i class="fa-solid fa-caret-up"></i>
@@ -72,6 +81,19 @@ export let columns = {
 for (const col in columns) {
   const colObj = columns[col];
   initializeBoard(colObj.element);
+
+  const moveMenu = $(`#move-to-${col}`);
+
+  moveMenu.text(`Move to ${colObj.titleEl.val()}`);
+
+  colObj.titleEl.on("input", () => {
+    moveMenu.text(`Move to ${colObj.titleEl.val()}`);
+  });
+
+  moveMenu.on("click", () => {
+    moveItem(moveItemCurrTarget, colObj.element);
+    moveItemMenu.toggleClass("hidden", true);
+  });
 }
 
 function initializeBoard(elem) {
@@ -87,13 +109,6 @@ export function addKanbanItem(item, board) {
 
   kanbanContainer.append(item);
   updateBoardItemsPositions(board);
-  // ["DOMNodeInserted", "DOMNodeRemoved"].forEach((str) => {
-  //   kanbanContainer.on(str, () => {
-  //     board.find(".kanban-item-container").children(".kanban-item").each((i, e) => {
-  //       updateItemPositions($(e));
-  //     })
-  //   });
-  // });
 }
 
 export function createItemGeneral(data, board) {
@@ -148,6 +163,23 @@ export function createItemGeneral(data, board) {
     updateBoardItemsPositions(board);
   });
 
+  const btnMoveItem = kanbanItem.find(".move-item");
+
+  btnMoveItem.on("click", () => {
+    if (moveItemMenu.hasClass("hidden")) {
+      moveItemCurrTarget = null;
+    }
+
+    moveItemMenu.toggleClass("hidden", moveItemCurrTarget === kanbanItem);
+    moveItemCurrTarget = kanbanItem;
+
+    const left = btnMoveItem.position().left;
+    const top = btnMoveItem.position().top + btnMoveItem.outerHeight();
+
+    moveItemMenu.css("left", `${left}px`);
+    moveItemMenu.css("top", `${top}px`);
+  });
+
   return kanbanItem;
 }
 
@@ -180,4 +212,8 @@ function updateBoardItemsPositions(board) {
   board.find(".kanban-item-container").children(".kanban-item").each((i, e) => {
     updateItemPositions($(e));
   });
+}
+
+function moveItem(item, board) {
+  board.find(".kanban-item-container").append(item);
 }

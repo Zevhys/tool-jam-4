@@ -11,3 +11,19 @@ html {
 .hidden {
   display: none !important;
 }
+
+.vseparator {
+  border-left: 1px solid var(--border);
+  margin: .1em .25em;
+}
+
+.move-item-popup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  max-width: 15em;
+  align-items: start;
+  background: var(--background);
+  padding: .2em;
+  border-radius: 4px;
+}
