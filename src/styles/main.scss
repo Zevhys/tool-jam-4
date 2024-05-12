@@ -24,8 +24,10 @@ html {
   max-width: 15em;
   align-items: start;
   background: var(--background);
-  padding: .2em;
+  padding: .4em .15em;
+  border: 1px solid var(--border);
   border-radius: 4px;
+  box-shadow: 0 0 12px var(--shadow);
 }
 
 .toolbar {
@@ -33,9 +35,10 @@ html {
   // background: gray;
   color: var(--background);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 0 12px var(--shadow);
   display: flex;
   padding: 0 1em;
-  
+
   transition: .7s ease-out;
 
   & > h1 {
@@ -43,6 +46,7 @@ html {
     font-weight: lighter;
     margin: .3em 0;
     margin-right: .5em;
+    letter-spacing: .3ch;
   }
 
   & > button {

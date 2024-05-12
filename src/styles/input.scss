@@ -48,7 +48,8 @@ button {
     border: 1px solid var(--border);
     padding: .2em .45em;
     margin: .1em .25em;
-    transition: .5s ease-out;
+
+    transition: .05s ease-out;
 
     &:hover {
       background: var(--border-100);
@@ -69,17 +70,29 @@ button {
   }
 }
 
-label.checkbox > input {
-  &[type="checkbox"] {
-    display: none;
+label.checkbox {
+  & > i {
+    cursor: pointer;
   }
 
-  &:checked ~ .fa-square {
-    display: none;
-  }
+  & > input {
+    &[type="checkbox"] {
+      display: none;
+    }
 
-  &:not(:checked) ~ .fa-square-check {
-    display: none;
+    &:checked {
+      & ~ .fa-square {
+        display: none;
+      }
+      & ~ input {
+        text-decoration: line-through;
+        opacity: .8;
+      }
+    }
+
+    &:not(:checked) ~ .fa-square-check {
+      display: none;
+    }
   }
 }
 
