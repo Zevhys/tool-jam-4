@@ -24,6 +24,10 @@ export let templateCheckbox = {
   checked : false,
 }
 
+
+// SAVING
+
+
 function getBoardData(board) {
   let boardData = {
     title: board.find("h2 > input[type='text']").val() || "",
@@ -66,16 +70,9 @@ function saveBoards() {
     const colObj = columns[col];
     data.push(getBoardData(colObj.element))
   }
-  
-  console.log(data);
 
   localStorage.setItem("boardData", JSON.stringify(data));
 }
-
-// Prototype for loading items
-// addKanbanItem(
-//   createItemGeneral(templateItemGeneral, colObj.element),
-// colObj.element);
 
 $("#button-save").on("click", () => {
   saveBoards();
@@ -89,8 +86,22 @@ window.setInterval(() => {
   saveBoards();
 }, 60000);
 
+
+// LOADING
+
 window.addEventListener("load", () => {
-  // if (localStorage.getItem("boardData") != null) {
-  //   console.log(JSON.parse(localStorage.getItem("boardData")))
-  // }
+  if (localStorage.getItem("boardData") != null) {
+    const data = JSON.parse(localStorage.getItem("boardData"));
+    data.forEach((e, id) => {
+      const colObj = columns["col" + (id + 1)];
+      const colEl = colObj.element;
+
+      colObj.titleEl.val(e.title);
+
+      e.boardItems.forEach((itm) => {
+        addKanbanItem(createItemGeneral(itm, colEl), colEl);
+      });
+    });
+    // console.log(JSON.parse(localStorage.getItem("boardData")))
+  }
 });
