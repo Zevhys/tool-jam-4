@@ -6,40 +6,44 @@ let kanbanItemTemplate = `
   <div class="container">
     <h3><input class="heading" type="text" value="Title"></h3>
     <textarea class="textbox note"></textarea>
-    <hr>
   </div>
 
-  <hr>
+  <details class="kanban-item-config">
+    <summary>
+      <i class="fa-solid fa-ellipsis"></i>
+    </summary>
 
-  <div class="controls">
-    <button class="create-item toggle-heading">
-      <i class="fa-solid fa-heading"></i>
-    </button>
+    <div class="controls">
+      <button class="create-item toggle-heading">
+        <i class="fa-solid fa-heading"></i>
+      </button>
 
-    <button class="create-item toggle-note">
-      <i class="fa-solid fa-file-lines"></i>
-    </button>
+      <button class="create-item toggle-note">
+        <i class="fa-solid fa-file-lines"></i>
+      </button>
 
-    <button class="create-item create-task">
-      <i class="fa-solid fa-list-check"></i>
-    </button>
+      <button class="create-item create-task">
+        <i class="fa-solid fa-list-check"></i>
+      </button>
 
-    <div class="flex-space"></div>
+      <div class="flex-space"></div>
 
-    <button class="create-item delete-item">
-      <i class="fa-solid fa-trash"></i>
-    </button>
-  </div>
+      <button class="create-item delete-item">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+  </details>
 `;
 
 function initializeBoard(elem) {
   const createNoteButton = elem.querySelector(".create-item-note");
 
   createNoteButton.addEventListener("click", () => {
-    let kanbanItem = d.createElement("label");
+    let kanbanItem = d.createElement("div");
     kanbanItem.classList.add("kanban-item");
     kanbanItem.innerHTML = kanbanItemTemplate;
 
+    const headingComp = kanbanItem.querySelector("h3");
     const headingInp = kanbanItem.querySelector(".heading");
     const noteInp = kanbanItem.querySelector(".note");
 
@@ -54,7 +58,7 @@ function initializeBoard(elem) {
     });
 
     toggleHeadingButton.addEventListener("click", () => {
-      headingInp.classList.toggle("hidden");
+      headingComp.classList.toggle("hidden");
     });
 
     toggleNoteButton.addEventListener("click", () => {
