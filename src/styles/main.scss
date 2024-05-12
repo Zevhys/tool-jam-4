@@ -35,6 +35,8 @@ html {
   border-bottom: 1px solid var(--border);
   display: flex;
   padding: 0 1em;
+  
+  transition: .7s ease-out;
 
   & > h1 {
     font-size: 1.6em;

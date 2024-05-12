@@ -48,6 +48,7 @@ button {
     border: 1px solid var(--border);
     padding: .2em .45em;
     margin: .1em .25em;
+    transition: .5s ease-out;
 
     &:hover {
       background: var(--border-100);

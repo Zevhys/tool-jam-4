@@ -25,6 +25,8 @@ body {
 
   color: var(--text);
   background: var(--background);
+
+  transition: .5s ease-out;
 }
 
 .light-mode {

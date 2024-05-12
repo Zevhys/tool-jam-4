@@ -37,6 +37,8 @@
   padding: 1em;
   padding-bottom: 0.7em;
 
+  transition: .5s ease-out;
+
   & hr {
     width: 100%;
     height: 1px;
@@ -53,6 +55,7 @@
       width: 100%;
       box-sizing: border-box;
       border: 4px solid var(--background);
+      transition: .5s ease-out;
     }
   }
 
