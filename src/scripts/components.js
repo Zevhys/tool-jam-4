@@ -1,4 +1,3 @@
-const d = document;
 import $ from "jquery";
 
 let kanbanItemTemplate = `
@@ -38,9 +37,11 @@ function initializeBoard(elem) {
   const createNoteButton = elem.find(".create-item-note");
 
   createNoteButton.bind("click", () => {
-    let kanbanItem = $(`<div class='kanban-item'>${kanbanItemTemplate}</div>`);
-    // kanbanItem.addClass("kanban-item");
-    // kanbanItem.innerHTML = kanbanItemTemplate;
+    let kanbanItem = $(`
+      <div class='kanban-item'>
+        ${kanbanItemTemplate}
+      </div>
+    `);
 
     const headingComp = kanbanItem.find("h3");
     const headingInp = kanbanItem.find(".heading");
