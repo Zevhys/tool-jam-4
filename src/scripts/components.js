@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { templateItemGeneral, templateCheckbox } from "./storage";
 
 let kanbanItemTemplate = `
   <div class="container">
@@ -45,7 +46,7 @@ let kanbanItemTemplate = `
   </div>
 `;
 
-let columns = {
+export let columns = {
   col1: {
     name: "",
     element: $("#col1"),
@@ -77,11 +78,11 @@ function initializeBoard(elem) {
   const createNoteButton = elem.find(".create-item-note");
 
   createNoteButton.on("click", () => {
-    addKanbanItem(createItemGeneral({}, elem), elem);
+    addKanbanItem(createItemGeneral(templateItemGeneral, elem), elem);
   });
 }
 
-function addKanbanItem(item, board) {
+export function addKanbanItem(item, board) {
   const kanbanContainer = board.find(".kanban-item-container");
 
   kanbanContainer.append(item);
@@ -93,7 +94,7 @@ function addKanbanItem(item, board) {
   });
 }
 
-function createItemGeneral(data, board) {
+export function createItemGeneral(data, board) {
   let kanbanItem = $(`
     <div class='kanban-item'>
       ${kanbanItemTemplate}
