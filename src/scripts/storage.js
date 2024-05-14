@@ -3,6 +3,7 @@ import {
   columns,
   addKanbanItem,
   createItemGeneral,
+  initializeBoard,
 } from "./components";
 
 const saveIndicator = $("#saving-indicator");
@@ -105,6 +106,12 @@ window.addEventListener("load", () => {
 
       colObj.titleEl.val(e.title);
       colObj.titleEl.attr("data-title-val", e.title);
+      // console.log(e);
+
+      // initializeBoard(colObj.element);
+      const moveMenu = $(`#move-to-col${id + 1}`);
+      moveMenu.text(`Move to ${e.title}`);
+      console.log(moveMenu,`Move to ${e.title}`);
 
       e.boardItems.forEach((itm) => {
         addKanbanItem(createItemGeneral(itm, colEl), colEl);

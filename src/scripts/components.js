@@ -84,11 +84,16 @@ for (const col in columns) {
 
   const moveMenu = $(`#move-to-${col}`);
 
-  moveMenu.text(`Move to ${colObj.titleEl.val()}`);
+  if (localStorage.getItem("boardData") == null) {
+    colObj.titleEl.attr("data-title-val", colObj.nameDefault);
+    colObj.titleEl.val(colObj.nameDefault);
+    moveMenu.text(`Move to ${colObj.titleEl.attr("data-title-val")}`);
+    // console.log(colObj.titleEl.attr("data-title-val"));
+  }
 
   colObj.titleEl.on("input", () => {
-    colObj.titleEl.attr("data-title-val", colObj.titleEl.val());
-    moveMenu.text(`Move to ${colObj.titleEl.val()}`);
+    colObj.titleEl.attr("data-title-val", colObj.titleEl.attr("data-title-val"));
+    moveMenu.text(`Move to ${colObj.titleEl.attr("data-title-val")}`);
   });
 
   moveMenu.on("click", () => {
@@ -97,7 +102,7 @@ for (const col in columns) {
   });
 }
 
-function initializeBoard(elem) {
+export function initializeBoard(elem) {
   const createNoteButton = elem.find(".create-item-note");
   const headingInp = elem.find("input[id*='heading']");
 
