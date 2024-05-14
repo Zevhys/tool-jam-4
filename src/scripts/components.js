@@ -97,8 +97,17 @@ for (const col in columns) {
   });
 
   moveMenu.on("click", () => {
+    // for (const colC in columns) {
+    //   const colObjC = columns[colC];
+    //   updateBoardItemsPositions(colObjC.element);
+    // }
+
     moveItem(moveItemCurrTarget, colObj.element);
     moveItemMenu.toggleClass("hidden", true);
+
+    $(".kanban-item-container").children(".kanban-item").each((i, e) => {
+      updateItemPositions($(e));
+    });
   });
 }
 
