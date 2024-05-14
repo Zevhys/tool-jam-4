@@ -30,7 +30,19 @@ html {
   box-shadow: 0 0 12px var(--shadow);
 }
 
+.main {
+  width: 100%;
+  overflow: auto;
+}
+
 .toolbar {
+  position: sticky;
+
+  // width: calc(100% - 2em);
+  // width: 550px;
+  left: 0;
+  // top: 0;
+
   background: var(--text);
   // background: gray;
   color: var(--background);
