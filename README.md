@@ -1,5 +1,6 @@
 # Kantan \| かんたん
 
+[![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml)
 <div align="center">
   <img src="preview.png" height="350px">
 </div>
