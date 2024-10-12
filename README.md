@@ -27,6 +27,6 @@ npm run start
 npm run build
 ```
 
-#
+# Collaborator
 > [!NOTE]  
 > <b>I am currently working on a project in collaboration with my friend, [@nndda](https://github.com/nndda)</b>
