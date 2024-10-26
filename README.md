@@ -1,6 +1,8 @@
 # Kantan \| かんたん
 
 [![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml)
+[![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/eslint.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/eslint.yml)
+[![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/stylelint.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/stylelint.yml)
 <div align="center">
   <img src="preview.png" height="350px">
 </div>
