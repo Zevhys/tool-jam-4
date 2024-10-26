@@ -1,17 +1,14 @@
-# Kantan \| かんたん
-
-[![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml)
-[![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/eslint.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/eslint.yml)
-[![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/stylelint.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/stylelint.yml)
-<div align="center">
-  <img src="preview.png" height="350px">
-</div>
+# Kantan \| かんたん [![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/codeql.yml) [![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/eslint.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/eslint.yml) [![CodeQL](https://github.com/Zevhys/tool-jam-4/actions/workflows/stylelint.yml/badge.svg)](https://github.com/Zevhys/tool-jam-4/actions/workflows/stylelint.yml)
 
 Submission for [The Tool Jam #4](https://itch.io/jam/the-tool-jam-4)
 
 Half-baked kanban board for your productivity. Your boards are saved in the browsers every minute. Or you can save it manually.
 
-# Techonologies
+<div align="center">
+  <img src="preview.png" height="350px">
+</div>
+
+# Tech Stack
 ![HTML](https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=ffffff)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=ffffff)
 ![Sass](https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=sass&logoColor=white)
