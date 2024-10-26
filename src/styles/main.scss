@@ -1,6 +1,6 @@
 html {
   color-scheme: dark;
-  font-family: "poppins", sans-serif;
+  font-family: poppins, sans-serif;
   font-size: 0.9em;
 }
 
@@ -41,9 +41,11 @@ html {
   // width: calc(100% - 2em);
   // width: 550px;
   left: 0;
+
   // top: 0;
 
   background: var(--text);
+
   // background: gray;
   color: var(--background);
   border-bottom: 1px solid var(--border);
@@ -78,12 +80,14 @@ html {
 
 @keyframes load-fade-out {
   0% {
-    opacity: 100%;
+    opacity: 1;
   }
+
   80% {
-    opacity: 100%;
+    opacity: 1;
   }
+
   100% {
-    opacity: 0%;
+    opacity: 0;
   }
 }
