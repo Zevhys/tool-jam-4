@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { templateItemGeneral, templateCheckbox } from "./storage";
+import { templateItemGeneral } from "./storage";
 
 const moveItemMenu = $("#move-item-menu");
 let moveItemCurrTarget;
@@ -92,7 +92,10 @@ for (const col in columns) {
   }
 
   colObj.titleEl.on("input", () => {
-    colObj.titleEl.attr("data-title-val", colObj.titleEl.attr("data-title-val"));
+    colObj.titleEl.attr(
+      "data-title-val",
+      colObj.titleEl.attr("data-title-val")
+    );
     moveMenu.text(`Move to ${colObj.titleEl.attr("data-title-val")}`);
   });
 
@@ -105,9 +108,11 @@ for (const col in columns) {
     moveItem(moveItemCurrTarget, colObj.element);
     moveItemMenu.toggleClass("hidden", true);
 
-    $(".kanban-item-container").children(".kanban-item").each((i, e) => {
-      updateItemPositions($(e));
-    });
+    $(".kanban-item-container")
+      .children(".kanban-item")
+      .each((i, e) => {
+        updateItemPositions($(e));
+      });
   });
 }
 
@@ -219,7 +224,7 @@ export function createItemGeneral(data, board) {
 function createCheckbox(name = "", checked = false) {
   let taskItem = $(`
     <label class='checkbox'>
-      <input type="checkbox" ${ checked ? "checked" : "" }>
+      <input type="checkbox" ${checked ? "checked" : ""}>
       <i class="fa-solid fa-square-check"></i>
       <i class="fa-regular fa-square"></i>
       <input type="text" placeholder="Task item" value="${name}">
@@ -242,9 +247,12 @@ function updateItemPositions(item) {
 }
 
 function updateBoardItemsPositions(board) {
-  board.find(".kanban-item-container").children(".kanban-item").each((i, e) => {
-    updateItemPositions($(e));
-  });
+  board
+    .find(".kanban-item-container")
+    .children(".kanban-item")
+    .each((i, e) => {
+      updateItemPositions($(e));
+    });
 }
 
 function moveItem(item, board) {
