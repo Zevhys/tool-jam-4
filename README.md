@@ -21,6 +21,9 @@ Half-baked kanban board for your productivity. Your boards are saved in the brow
 
 # Installation
 ```bash
+# clone repository 
+git clone https://github.com/Zevhys/cash-flow .
+
 # Start a server in development mode on port 8080
 npm run start
 
