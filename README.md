@@ -20,7 +20,7 @@ Half-baked kanban board for your productivity. Your boards are saved in the brow
 ![](https://img.shields.io/badge/Font%20Awesome-528DD7?style=flat-square&logo=fontawesome&logoColor=ffffff)
 
 # Installation
-```bash
+<pre>
 # clone repository 
 git clone https://github.com/Zevhys/tool-jam-4 .
 
@@ -29,7 +29,7 @@ npm run start
 
 # Build the app and output it in `/dist`
 npm run build
-```
+</pre>
 
 # Collaborator
 > [!NOTE]  
